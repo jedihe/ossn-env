@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  web:
+    build: .
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=ossn
+      - DB_DB=ossn
+      - SITE_PROTOCOL=http
+      - SITE_DOMAIN=local.ossn.com
+      - SITE_USERDATA=/var/www/ossn_data/
+    volumes:
+      - ./volumes/ossn:/var/www/html
+      - ./volumes/ossn_data:/var/www/ossn_data
+
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_DATABASE=ossn
+      - MYSQL_ROOT_PASSWORD=ossn
+    volumes:
+      - ./etc/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
