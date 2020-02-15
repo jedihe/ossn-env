@@ -1,4 +1,5 @@
 version: '3.3'
+
 services:
   web:
     build: .
@@ -14,11 +15,37 @@ services:
     volumes:
       - ./volumes/ossn:/var/www/html
       - ./volumes/ossn_data:/var/www/ossn_data
+    links:
+      - db
+    networks:
+      - web
+      - backend
+    labels:
+      - 'traefik.backend=ossn_1'
+      - 'traefik.port=80'
+      - 'traefik.frontend.rule=Host:local.ossn.com'
+      - 'traefik.docker.network=traefik'
 
   db:
     image: mysql:8
     environment:
-      - MYSQL_DATABASE=ossn
       - MYSQL_ROOT_PASSWORD=ossn
+      - MYSQL_DATABASE=ossn
+      - MYSQL_USER=ossn
+      - MYSQL_PASSWORD=ossn
     volumes:
+      - db:/var/lib/mysql
       - ./etc/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    networks:
+      - backend
+    labels:
+      - 'traefik.enable=false'
+
+volumes:
+  db:
+
+networks:
+  web:
+    external:
+      name: traefik
+  backend:
