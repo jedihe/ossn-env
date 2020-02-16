@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y \
 #   git \
 #   vim \
     libpng-dev \
+    libjpeg62-turbo-dev \
     libmcrypt-dev \
     zlib1g-dev && \
     rm -rf /var/lib/apt/lists/* && \
@@ -11,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     a2enmod actions && \
     pecl install mcrypt-snapshot && \
     docker-php-source extract && \
+    docker-php-ext-configure gd --with-jpeg && \
     docker-php-ext-install -j$(nproc) mysqli gd zip exif && \
     docker-php-ext-enable mcrypt && \
     docker-php-source delete
