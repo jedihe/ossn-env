@@ -1,3 +1,5 @@
 volumes
 *.swo
 *.swp
+
+local.env

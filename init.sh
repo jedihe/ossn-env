@@ -1,7 +1,15 @@
 #!/bin/bash
 
-mkdir -p volumes/ossn volumes/ossn_data
+[ ! -e volumes ] && mkdir -p volumes
 
-git clone --branch 5.2 https://github.com/opensource-socialnetwork/opensource-socialnetwork.git volumes/ossn
+[ ! -e volumes/ossn ] && git clone --branch 5.2 https://github.com/opensource-socialnetwork/opensource-socialnetwork.git volumes/ossn
 
-sed -i.bak "s/VAR_HOST_UID/$(id -u)/g" docker-compose.yml && rm docker-compose.yml.bak
+if [ -f local.env ]
+then
+  echo "Found local.env file, leaving it as it is."
+else
+  echo "Initializing local.env..."
+  touch local.env
+  echo "-- Setting HOST_UID to value: $(id -u)"
+  echo "HOST_UID=$(id -u)" >> local.env
+fi
