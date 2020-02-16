@@ -16,11 +16,13 @@ services:
       - ./volumes/ossn:/var/www/html
       - ./volumes/ossn_data:/var/www/ossn_data
       - ./etc/apache/site.conf:/etc/apache2/sites-enabled/local.ossn.com
+      - ./etc/entrypoint.sh:/entrypoint.sh
     links:
       - db
     networks:
       - web
       - backend
+    entrypoint: /entrypoint.sh
     labels:
       - 'traefik.backend=ossn_1'
       - 'traefik.port=80'
