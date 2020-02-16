@@ -23,6 +23,8 @@ services:
       - web
       - backend
     entrypoint: /entrypoint.sh
+    extra_hosts:
+      - "local.ossn.com:127.0.0.1"
     labels:
       - 'traefik.backend=ossn_1'
       - 'traefik.port=80'
