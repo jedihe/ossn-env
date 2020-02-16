@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ ! -e volumes ] && mkdir -p volumes
+[ ! -e volumes/ossn_data ] && mkdir -p volumes/ossn_data
 
 [ ! -e volumes/ossn ] && git clone --branch 5.2 https://github.com/opensource-socialnetwork/opensource-socialnetwork.git volumes/ossn
 
