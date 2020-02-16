@@ -1,3 +1,4 @@
+# Derived from https://gist.github.com/Tyranwyn/8762f168861991ed8b51bca3db3115b1
 FROM php:7.2-apache-stretch
 
 RUN apt-get update && apt-get install -y \
