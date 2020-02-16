@@ -18,7 +18,4 @@ RUN apt-get update && apt-get install -y \
     docker-php-ext-enable mcrypt && \
     docker-php-source delete
 
-RUN chgrp -R www-data /var/www/html/ && \
-    chmod -R g+w /var/www/
-
 EXPOSE 80
