@@ -44,3 +44,10 @@ this:
 
 Load your site in the browser, by loading http://local.ossn.com.
 
+For proper installation, you must use specific values for some settings:
+
+- DB name: ossn
+- DB user: ossn
+- DB pass: ossn
+- DB host: db
+- Data directory: /var/www/ossn\_data/
