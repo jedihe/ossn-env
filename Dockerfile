@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     a2enmod actions && \
     pecl install mcrypt-snapshot && \
     docker-php-source extract && \
-    docker-php-ext-configure gd --with-jpeg-dir=/usr/lib/x86_64-linux-gnu && \
+    docker-php-ext-configure gd --with-jpeg-dir=/usr/include && \
     docker-php-ext-install -j$(nproc) mysqli gd zip exif && \
     docker-php-ext-enable mcrypt && \
     docker-php-source delete
