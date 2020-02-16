@@ -12,6 +12,7 @@ services:
       - SITE_PROTOCOL=http
       - SITE_DOMAIN=local.ossn.com
       - SITE_USERDATA=/var/www/ossn_data/
+      - HOST_UID=VAR_HOST_UID
     volumes:
       - ./volumes/ossn:/var/www/html
       - ./volumes/ossn_data:/var/www/ossn_data
